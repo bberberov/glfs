@@ -7,30 +7,6 @@
   <!-- This stylesheet controls how page header and navigational links
        are generated. -->
 
-    <!-- html.head:
-           Drop all navigational links from inside head xhtml output. -->
-   <!-- The original template is in {docbook-xsl}/xhtml/chunk-common.xsl -->
-  <xsl:template name="html.head">
-    <head>
-      <xsl:call-template name="system.head.content"/>
-      <xsl:call-template name="head.content"/>
-      <xsl:call-template name="user.head.content"/>
-      <xsl:variable name="up" select="parent::*"/>
-      <xsl:variable name="home" select="/*[1]"/>
-      <xsl:if test="$home != .">
-	<link rel="icon" href="../images/favicon.ico" type="image/x-icon"/>
-      </xsl:if>
-      <xsl:if test="$home = .">
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
-        <div class="book">
-          <div class="titlepage">
-            <img src="images/glfs-logo.png" alt="GLFS Logo" width="150" height="130"/>
-          </div>
-        </div>
-      </xsl:if>
-    </head>
-  </xsl:template>
-
     <!-- header.navigation:
            Self-made template that full replaces the original one -->
     <!-- The original template is in {docbook-xsl}/xhtml/chunk-common.xsl -->
@@ -39,6 +15,16 @@
     <xsl:param name="next" select="/foo"/>
     <xsl:variable name="up" select="parent::*"/>
     <xsl:variable name="home" select="/*[1]"/>
+
+      <!-- Add logo in index.html -->
+    <xsl:if test="$home = .">
+      <div class="book">
+        <div class="titlepage">
+          <img src="images/glfs-logo.png" alt="GLFS Logo" width="150" height="130"/>
+        </div>
+      </div>
+    </xsl:if>
+
       <!-- Don't generate the header in index.html -->
     <xsl:if test="$home != .">
       <div class="navheader">

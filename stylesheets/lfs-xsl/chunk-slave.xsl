@@ -27,7 +27,18 @@
     <!-- Print CSS Stylesheet
     The original template is in {docbook-xsl}/xhtml/docbook.xsl -->
   <xsl:template name='user.head.content'>
+<!--     <xsl:variable name="home" select="/*[1]"/> -->
+
      <link rel="stylesheet" href="../stylesheets/lfs-print.css" type="text/css" media="print"/>
+
+    <xsl:choose>
+      <xsl:when test="/*[1] = .">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <link rel="icon" href="../images/favicon.ico" type="image/x-icon"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
     <!-- Dropping some unwanted style attributes -->
